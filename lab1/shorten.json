@@ -1,0 +1,6 @@
+{
+"paths": {
+		"/go-path": "http://yandex.ru",
+		"/go-gopher": "https://gopl.io"
+}
+}

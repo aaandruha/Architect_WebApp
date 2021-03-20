@@ -1,4 +1,4 @@
-module orderservice
+module orderserver
 
 go 1.16
 

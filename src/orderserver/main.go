@@ -18,7 +18,10 @@ func main() {
 		log.SetOutput(file)
 		defer file.Close()
 	}
-	serverURL := ":8090"
+	c, err := parseEnv()
+
+	serverURL := c.ServeRESTAddress
+
 	log.WithFields(log.Fields{"url": serverURL}).Info("starting the server")
 	router := transport.Router()
 	log.Fatal(http.ListenAndServe(serverURL, router))

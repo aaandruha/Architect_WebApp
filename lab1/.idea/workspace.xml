@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="194316d8-b1ea-4013-9c74-abb1518c1704" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Loctravel-Component Diagram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Loctravel-Sequence Diagram.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/orderserver/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../src/orderserver/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/orderserver/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../src/orderserver/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/orderserver/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../src/orderserver/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/orderserver/my.log" beforeDir="false" afterPath="$PROJECT_DIR$/../src/orderserver/my.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/orderserver/transport/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/../src/orderserver/transport/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/orderserver/transport/handlers_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/../src/orderserver/transport/handlers_test.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1q2Dk5UZdcQTXhwI2uyYWm4kAxF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

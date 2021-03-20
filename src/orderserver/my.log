@@ -24,3 +24,13 @@
 {"level":"info","msg":"starting the server","time":"2021-02-24T21:38:49+03:00","url":":8090"}
 {"level":"info","method":"GET","msg":"got a new request","remoteAddr":"127.0.0.1:49754","speed":965100,"time":"2021-02-24T21:39:00+03:00","url":{"Scheme":"","Opaque":"","User":null,"Host":"","Path":"/api/v1/hello-world","RawPath":"","ForceQuery":false,"RawQuery":"","Fragment":"","RawFragment":""},"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0"}
 {"level":"info","method":"GET","msg":"got a new request","remoteAddr":"127.0.0.1:49754","speed":851500,"time":"2021-02-24T21:39:09+03:00","url":{"Scheme":"","Opaque":"","User":null,"Host":"","Path":"/api/v1/hello/12345","RawPath":"","ForceQuery":false,"RawQuery":"","Fragment":"","RawFragment":""},"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0"}
+{"level":"info","msg":"starting the server","time":"2021-03-03T20:37:12+03:00","url":":8090"}
+{"level":"info","msg":"starting the server","time":"2021-03-03T20:45:28+03:00","url":":8090"}
+{"level":"info","msg":"starting the server","time":"2021-03-03T20:53:58+03:00","url":":8090"}
+{"level":"info","msg":"starting the server","time":"2021-03-03T20:54:46+03:00","url":":8090"}
+{"level":"info","msg":"starting the server","time":"2021-03-03T20:55:26+03:00","url":":8090"}
+{"level":"info","msg":"starting the server","time":"2021-03-03T20:58:38+03:00","url":":8090"}
+{"level":"info","msg":"starting the server","time":"2021-03-03T20:59:46+03:00","url":":8090"}
+{"level":"info","msg":"starting the server","time":"2021-03-03T21:02:31+03:00","url":":8090"}
+{"level":"info","msg":"starting the server","time":"2021-03-10T20:40:16+03:00","url":":8000"}
+{"level":"info","msg":"starting the server","time":"2021-03-10T20:49:02+03:00","url":":8000"}

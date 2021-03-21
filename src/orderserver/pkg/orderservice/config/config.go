@@ -1,4 +1,4 @@
-package main
+package config
 
 import "github.com/kelseyhightower/envconfig"
 
@@ -12,7 +12,7 @@ type config struct {
 	DBPassword       string `envconfig:"server_db_password" default:""`
 }
 
-func parseEnv() (*config, error) {
+func ParseEnv() (*config, error) {
 	c := new(config)
 	if err := envconfig.Process(appID, c); err != nil {
 		return nil, err

@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"net/http"
+	"orderserver/pkg/orderservice/config"
 	"orderserver/pkg/orderservice/transport"
 	"os"
 	"os/signal"
@@ -23,7 +24,10 @@ func main() {
 		log.SetOutput(file)
 		defer file.Close()
 	}
-	c, err := parseEnv()
+	c, err := config.ParseEnv()
+	if err == nil {
+		log.Info("No ENV args")
+	}
 	serverURL := c.ServeRESTAddress
 
 	log.WithFields(log.Fields{"url": serverURL}).Info("starting the server")

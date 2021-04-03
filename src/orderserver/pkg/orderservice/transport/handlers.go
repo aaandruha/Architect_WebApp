@@ -1,11 +1,12 @@
 package transport
 
 import (
+	"database/sql"
 	"encoding/json"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	uuid "github.com/google/uuid"
@@ -16,9 +17,29 @@ import (
 func Router() *mux.Router {
 	r := mux.NewRouter()
 	s := r.PathPrefix("/api/v1").Subrouter()
+	s.HandleFunc("/orders", list).Methods(http.MethodGet)
 	s.HandleFunc("/order", createOrder).Methods(http.MethodPost)
 	s.HandleFunc("/order/{uuid:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}}", getOrder).Methods(http.MethodGet)
 	return r
+}
+
+func list(w http.ResponseWriter, r *http.Request) {
+	ordersList := [3]Order{
+		{Id: "926c9a76-4464-11eb-bdf0-ee331b8c8f24", MenuItems: []Menu{{Id: "444", Quantity: 3}, {Id: "12333345", Quantity: 2}}, OrderedAtTimestamp: 165423372625, Cost: 999},
+		{Id: "926c9a76-4464-11eb-bdf0-ee333b8c8f24", MenuItems: []Menu{{Id: "12333345", Quantity: 2}, {Id: "12333345", Quantity: 1}}, OrderedAtTimestamp: 165423378625, Cost: 345},
+		{Id: "926234a76-4464-112b-bdf0-ee331b8c8f24", MenuItems: []Menu{{Id: "12333345", Quantity: 1}, {Id: "12333345", Quantity: 3}}, OrderedAtTimestamp: 165423322625, Cost: 550},
+	}
+	b1, err := json.Marshal(ordersList)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	if _, err := io.WriteString(w, string(b1)); err != nil {
+		log.WithField("err", err).Error("write response error")
+	}
 }
 
 func getOrder(w http.ResponseWriter, r *http.Request) {
@@ -46,23 +67,29 @@ func createOrder(w http.ResponseWriter, r *http.Request) {
 	}
 
 	defer r.Body.Close()
-	var msg Order
-	err = json.Unmarshal(b, &msg)
+	var request Order
+	err = json.Unmarshal(b, &request)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	// check order
-	fmt.Println(msg.Id)
-
-	if msg.Id != "2424322" {
-		http.Error(w, "my own error message", http.StatusForbidden)
+	if len(request.MenuItems) == 0 {
+		http.Error(w, "MenuItem should be greater than zero ", http.StatusBadRequest)
+		return
+	}
+	//check quantity for menuitem
+	var quantity int
+	for _, s := range request.MenuItems {
+		quantity += s.Quantity
+	}
+	if quantity == 0 {
+		http.Error(w, "Quantity MenuItem should be greater than zero ", http.StatusBadRequest)
 		return
 	}
 
 	id := uuid.New()
-	orderQuery := Order{Id: id.String(), MenuItems: []Menu{{Id: "12345", Quantity: 3}, {Id: "12333345", Quantity: 2}}}
+	orderQuery := Order{Id: id.String(), MenuItems: request.MenuItems, OrderedAtTimestamp: time.Now().UnixNano(), Cost: 1234}
 
 	b1, err := json.Marshal(orderQuery)
 	if err != nil {
@@ -97,20 +124,17 @@ func createOrder(w http.ResponseWriter, r *http.Request) {
 	})
 }*/
 
-type Kitty struct {
-	Name string `json:"name"`
-}
-
 type Order struct {
 	Id                 string `json:"id"`
 	MenuItems          []Menu `json:"menuItems"`
-	OrderedAtTimestamp int    `json:"orderedAtTimestamp"`
+	OrderedAtTimestamp int64  `json:"orderedAtTimestamp"`
 	Cost               int    `json:"cost"`
 }
 
 type Menu struct {
 	Id       string `json:"id"`
 	Quantity int    `json:"quantity"`
+	Cost     int    `json:"cost"`
 }
 
 /*func getKitty(w http.ResponseWriter, _ *http.Request) {
@@ -122,15 +146,20 @@ type Menu struct {
 	io.WriteString(w, string(b))
 }*/
 
-/*type Server struct {
+type Server struct {
 	db *sql.DB
 }
 
 func (s *Server) createOrder(http.ResponseWriter, *http.Request) {
 
-	db, err := s.db.Open("mysql", `root`)
+	db, err := s.db.Open("mysql", `root:Tyrwecib1529@/orderservice`)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer s.db.Close()
+	q := "insert "
 	result, err := s.db.Exec()
-
-
-
-}*/
+	if err := s.db.Ping(); err != nil {
+		log.Fatal(err)
+	}
+}

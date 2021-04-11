@@ -3,6 +3,7 @@ package transport
 import (
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -18,7 +19,7 @@ func Router() *mux.Router {
 	r := mux.NewRouter()
 	s := r.PathPrefix("/api/v1").Subrouter()
 	s.HandleFunc("/orders", list).Methods(http.MethodGet)
-	s.HandleFunc("/order", createOrder).Methods(http.MethodPost)
+	s.HandleFunc("/order", createOrderSql).Methods(http.MethodPost)
 	s.HandleFunc("/order/{uuid:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}}", getOrder).Methods(http.MethodGet)
 	return r
 }
@@ -150,16 +151,25 @@ type Server struct {
 	db *sql.DB
 }
 
-func (s *Server) createOrder(http.ResponseWriter, *http.Request) {
+func createOrderSql(http.ResponseWriter, *http.Request) {
 
-	db, err := s.db.Open("mysql", `root:Tyrwecib1529@/orderservice`)
+	db, err := sql.Open("mysql", `root:root@/orderserver`)
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer s.db.Close()
-	q := "insert "
-	result, err := s.db.Exec()
-	if err := s.db.Ping(); err != nil {
+	defer db.Close()
+
+	if err := db.Ping(); err != nil {
+		log.Fatal(err)
+	}
+
+	id := uuid.New()
+	cost := 123.56
+	q := "INSERT INTO `orderserver`.`order` (id, created, cost) VALUES (?, ?, ?)"
+	fmt.Println(q)
+	_, err = db.Exec(q, id.String(), time.Now(), cost)
+
+	if err != nil {
 		log.Fatal(err)
 	}
 }

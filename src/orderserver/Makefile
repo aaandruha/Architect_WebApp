@@ -5,7 +5,7 @@ GOPATH=$(shell go env GOPATH)
 export PATH := $(GOPATH)/bin:$(PATH)
 export GO111MODULE=on
 
-all: build test check
+all: build #test check
 
 .PHONY: modules
 modules:

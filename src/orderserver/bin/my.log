@@ -1,0 +1,8 @@
+{"level":"info","msg":"No ENV args","time":"2021-04-03T16:01:40+03:00"}
+{"level":"info","msg":"starting the server","time":"2021-04-03T16:01:40+03:00","url":":8000"}
+{"level":"fatal","msg":"Error 1292: Incorrect datetime value: '1617455467745316900' for column 'created' at row 1","time":"2021-04-03T16:11:07+03:00"}
+{"level":"info","msg":"No ENV args","time":"2021-04-03T16:11:38+03:00"}
+{"level":"info","msg":"starting the server","time":"2021-04-03T16:11:38+03:00","url":":8000"}
+{"level":"fatal","msg":"Error 1292: Incorrect datetime value: '1617455513403628900' for column 'created' at row 1","time":"2021-04-03T16:11:53+03:00"}
+{"level":"info","msg":"No ENV args","time":"2021-04-03T16:31:00+03:00"}
+{"level":"info","msg":"starting the server","time":"2021-04-03T16:31:00+03:00","url":":8000"}
